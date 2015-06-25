@@ -56,7 +56,7 @@ def write_saved_data(data):
     return
 
 def post_tweet(message):
-    api = twitter.Api(consumer_key=achewoodTwitterCredential.stwitter_consumer_key,
+    api = twitter.Api(consumer_key=achewoodTwitterCredentials.twitter_consumer_key,
             consumer_secret=achewoodTwitterCredentials.twitter_consumer_secret,
             access_token_key=achewoodTwitterCredentials.the_key_given,
             access_token_secret=achewoodTwitterCredentials.the_key_secret)
@@ -82,11 +82,11 @@ elif (saved_data == ""):                                    # if nothing is save
 elif (saved_data['last_comic'] == todays_achewood):         #if the comic title hasn't changed since last time - do nothing
     #no new comic - update rep and write.
     saved_data['rep'] += 1
-#    post_tweet(no_update_message)
+    post_tweet(no_update_message)
     write_saved_data(saved_data)
     log("no comic today")
 else:                                                       #if there's a new title on the web, TWEET about it MAN!
-#    post_tweet(new_comic_message)
+    post_tweet(new_comic_message)
     saved_data['rep'] += 1
     saved_data['last_comic'] = todays_achewood
     write_saved_data(saved_data)
